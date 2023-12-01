@@ -8,16 +8,9 @@ import {ProductService} from "./services/product.service";
 import {RouterModule, Routes} from "@angular/router";
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchProductComponent } from './components/search-product/search-product.component';
-<<<<<<< HEAD
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-<<<<<<< HEAD
-=======
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
->>>>>>> 2c2402c (adding pagination to list product)
-=======
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
->>>>>>> c52a3eb (fix bug in product-detail and pagination mistake)
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes : Routes = [
   {path: 'product/:id', component : ProductDetailsComponent},

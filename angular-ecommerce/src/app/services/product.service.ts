@@ -53,27 +53,11 @@ export class ProductService {
     return  this.getProducts(searchUrl)
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  getProduct(productId: number) : Observable<Product> {
-=======
-  searchProductsPaginate(thePage : number,
-                         thePageSize : number,
-                         keyword : string | null) : Observable<GetResponseProducts> {
-    console.log(keyword)
-    // need to build URL based on category id
-    const searchUrl : string = `${this.baseUrl}/search/findByNameContaining`+
-      `&page=${thePage}&size=${thePageSize}`;
-    return this.httpClient.get<GetResponseProducts>(searchUrl);
-  }
 
   getProduct(productId: number): Observable<Product> {
->>>>>>> c52a3eb (fix bug in product-detail and pagination mistake)
-    const productUrl : string = `${this.baseUrl}/${productId}`;
+    const productUrl: string = `${this.baseUrl}/${productId}`;
     return this.httpClient.get<Product>(productUrl);
-<<<<<<< HEAD
-
-=======
+  }
   searchProductsPaginate(thePage : number,
                          thePageSize : number,
                          keyword : string | null) : Observable<GetResponseProducts> {
@@ -82,9 +66,7 @@ export class ProductService {
     const searchUrl : string = `${this.baseUrl}/search/findByNameContaining`+
       `?name=${keyword}&page=${thePage}&size=${thePageSize}`;
     return this.httpClient.get<GetResponseProducts>(searchUrl);
->>>>>>> 2c2402c (adding pagination to list product)
-=======
->>>>>>> c52a3eb (fix bug in product-detail and pagination mistake)
+
   }
 }
 
