@@ -8,7 +8,11 @@ import {ProductService} from "./services/product.service";
 import {RouterModule, Routes} from "@angular/router";
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchProductComponent } from './components/search-product/search-product.component';
+<<<<<<< HEAD
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+=======
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+>>>>>>> 2c2402c (adding pagination to list product)
 
 const routes : Routes = [
   {path: 'product/:id', component : ProductDetailsComponent},
@@ -32,7 +36,8 @@ const routes : Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

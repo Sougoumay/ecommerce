@@ -45,8 +45,42 @@
         <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
           Aucun produit ne correspond à votre recherche
         </div>
-
       </div>
+
+      <!-- Begin::footer -->
+
+      <div class="footer-pagination">
+        <div class="row">
+          <div class="col-md-6">
+
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-8" style="padding-left: 30%">
+                <ngb-pagination [(page)]="pageNumber"
+                                [pageSize]="pageSize"
+                                [collectionSize]="totalElements"
+                                [maxSize]="5"
+                                [boundaryLinks]="true"
+                                (pageChange)="listProducts()">
+                </ngb-pagination>
+              </div>
+              <div class="col-md-4 mt-2" style="text-align: right;">
+                <span class="mr-2">Page Size</span>
+                <select #myPageSizeSelect (change)="updatePageSize(myPageSizeSelect.value)">
+                  <option selected="true">5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENd::footer -->
+
     </div>
   </div>
 </div>
