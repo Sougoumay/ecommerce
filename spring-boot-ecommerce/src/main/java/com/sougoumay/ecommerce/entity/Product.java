@@ -22,8 +22,9 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private ProductCategory category;
 
-    @Column(name = "sku")
-    private String sku;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private ImageModel image;
 
     @Column(name = "name")
     private String name;
@@ -37,8 +38,6 @@ public class Product {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "active")
-    private boolean active;
 
     @Column(name = "units_in_stock")
     private int unitsInStock;

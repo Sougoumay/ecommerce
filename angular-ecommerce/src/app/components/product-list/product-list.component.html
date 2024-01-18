@@ -6,8 +6,14 @@
           <div class="product-box">
 
             <div>
-              <a routerLink="/product/{{product.id}}">
+              <a *ngIf="product.imageUrl != null" routerLink="/product/{{product.id}}">
                 <img src="{{product.imageUrl}}" class="img-responsive">
+                image url not null
+              </a>
+
+              <a *ngIf="product.imageUrl == null" routerLink="/product/{{product.id}}">
+<!--                <img [src]="product.fileHandle.url" class="img-responsive">-->
+                image url null
               </a>
             </div>
 

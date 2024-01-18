@@ -2,9 +2,9 @@ import {Product} from "../product/product";
 
 export class CartItem {
 
-  id : number;
+  id : number | null;
   name : string;
-  imageUrl : string;
+  imageUrl : string | null;
   unitPrice : number;
   quantity : number;
 

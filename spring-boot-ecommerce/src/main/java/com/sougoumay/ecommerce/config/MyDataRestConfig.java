@@ -33,11 +33,11 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         //RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
-        // disable HTTP methods for Product : PUT, POST and DELETE
-        disableHttpMethods(Product.class ,config, theUnsupportedActions);
-
-        // disable HTTP methods for ProductCategory : PUT, POST and DELETE
-        disableHttpMethods(ProductCategory.class ,config, theUnsupportedActions);
+//        // disable HTTP methods for Product : PUT, POST and DELETE
+//        disableHttpMethods(Product.class ,config, theUnsupportedActions);
+//
+//        // disable HTTP methods for ProductCategory : PUT, POST and DELETE
+//        disableHttpMethods(ProductCategory.class ,config, theUnsupportedActions);
 
         // disable HTTP methods for Country : PUT, POST and DELETE
         disableHttpMethods(Country.class ,config, theUnsupportedActions);

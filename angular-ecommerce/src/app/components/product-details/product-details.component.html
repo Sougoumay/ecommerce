@@ -5,7 +5,9 @@
     </p>
 
     <img src="{{product?.imageUrl}}" class="detail-img">
+    <img *ngIf="picByte" [src]="getImageUrl()" class="detail-img">
 
+    <div *ngIf="picByte">vrai</div>
     <h3>{{product?.name}}</h3>
     <div class="price">{{product?.unitPrice | currency:'USD'}}</div>
     <button class="btn btn-primary btn-sm" (click)="addToCart()">Add to Cart</button>

@@ -23,6 +23,10 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
+  addProduct(productFormData: FormData) : Observable<Product> {
+    return this.httpClient.post<Product>(`${this.baseUrl}/add`,productFormData);
+  }
+
   getProductListPaginate(thePage : number,
                          thePageSize : number,
                          categoryId : number) : Observable<GetResponseProducts> {

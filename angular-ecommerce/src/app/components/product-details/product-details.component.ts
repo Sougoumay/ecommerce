@@ -13,6 +13,7 @@ import {CartService} from "../../services/cart.service";
 export class ProductDetailsComponent implements OnInit{
 
   product : Product | null = null;
+  picByte : any = null;
 
   constructor(private productService : ProductService,
               private cartService : CartService,
@@ -25,13 +26,24 @@ export class ProductDetailsComponent implements OnInit{
     })
   }
 
+  getImageUrl(): string {
+    if (this.picByte) {
+      const imageBlob = new Blob([this.picByte], { type: 'image/*' });
+      return URL.createObjectURL(imageBlob);
+    }
+    return ''; // ou retournez une URL d'image par défaut si picByte est null ou vide
+  }
+
   handleProductDetails() {
     // egt the "id" param string and convert to a number
     const productId : number = Number(this.route.snapshot.paramMap.get("id"));
 
     this.productService.getProduct(productId).subscribe(
       data => {
-        this.product = data;
+        this.product = data
+        this.picByte = data.image.picByte;
+        console.log(this.product.image)
+        console.log(this.product.image.picByte)
       }
     )
   }
