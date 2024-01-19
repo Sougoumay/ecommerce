@@ -38,18 +38,6 @@ public class SecurityConfig {
     private String secretKey = "9AAFSKJBQ78S67HJQ98S8SBSQ90Q8SJS1782BVZHBO8729PUU3ZJIHOU29803J28";;
 
     @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager()
-    {
-
-        PasswordEncoder passwordEncoder = passwordEncoder();
-
-        return new InMemoryUserDetailsManager(
-                User.withUsername("user1").password(passwordEncoder().encode("1010")).authorities("USER").build(),
-                User.withUsername("admin").password(passwordEncoder().encode("1010")).authorities("ADMIN").build()
-        );
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder();
@@ -64,7 +52,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req
                                 .requestMatchers("/api/auth/login/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/*").hasAnyAuthority("SCOPE_ADMIN","SCOPE_USER")
+                                .requestMatchers(HttpMethod.GET, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN","SCOPE_ROLE_EMPLOYEE","SCOPE_ROLE_MANAGER")
                 )
                 .authorizeHttpRequests( req -> req.anyRequest().authenticated())
 //                .httpBasic(Customizer.withDefaults())

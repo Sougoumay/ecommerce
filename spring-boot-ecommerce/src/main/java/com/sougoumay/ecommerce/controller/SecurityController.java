@@ -29,7 +29,6 @@ public class SecurityController {
     private JwtEncoder jwtEncoder;
 
     @GetMapping("/profile")
-//    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public Authentication authentication(Authentication authentication) {
         return authentication;
     }
