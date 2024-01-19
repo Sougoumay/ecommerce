@@ -1,0 +1,15 @@
+GET http://127.0.0.1:8080/api/products
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNTYwOTU1MywiaWF0IjoxNzA1NjA4OTUzLCJzY29wZSI6IkFETUlOIn0.jUjCVCK9wuhE0KvY0I50pz0DQiwL-rIPKOyUe1dzIKIC-AYG5fzeVQ1QpW_3qcMr99g7l6rjOPZx8gQyaA308Q
+
+###
+GET http://127.0.0.1:8080/api/auth/profile
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImV4cCI6MTcwNTYwNTkxMiwiaWF0IjoxNzA1NjA1MzEyLCJzY29wZSI6IlVTRVIifQ.M8UPeV9eq3KmuGIm9nT5TUBbIXTrdIKnLh0YPLonoiutuREJKR7uObYA6ZjSxw1HXK658o0zxaQRbMKZJCVHcQ
+
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=1010
