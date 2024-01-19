@@ -13,6 +13,8 @@ export class AuthService {
   username !: any;
   accessToken !: string;
 
+  storage : Storage = sessionStorage;
+
 
   constructor(private httpClient : HttpClient) { }
 
@@ -27,11 +29,16 @@ export class AuthService {
   }
 
   loadProfile(data: any) {
-    this.isAuthenticated = true;
+    // this.isAuthenticated = true;
+    this.storage.setItem("isAuthenticated", JSON.stringify(true));
     this.accessToken = data['access-token'];
+    this.storage.setItem("accessToken", this.accessToken);
     let decodedJwt = jwtDecode(this.accessToken);
-    this.username = decodedJwt.sub;
-    console.log(decodedJwt.aud)
+    // this.username = decodedJwt.sub;
+    this.storage.setItem("username", JSON.stringify(decodedJwt.sub));
+    this.storage.setItem("decoder", JSON.stringify(decodedJwt));
+    console.log("********************")
+    console.log(decodedJwt)
     // this.roles = decodedJwt.scope;
   }
 }

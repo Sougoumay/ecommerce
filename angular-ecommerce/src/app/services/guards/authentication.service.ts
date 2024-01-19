@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {AuthService} from "../auth.service";
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 
 @Injectable({
@@ -7,11 +6,12 @@ import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/rout
 })
 export class AuthenticationService {
 
-  constructor(private authService : AuthService,
-              private router : Router) { }
+  storage : Storage = sessionStorage;
+
+  constructor(private router : Router) { }
 
   canActivate(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) : boolean {
-    if(this.authService.isAuthenticated) {
+    if(this.storage.getItem("isAuthenticated") != null) {
       return true;
     }
 

@@ -5,7 +5,7 @@ import {AddProductValidator} from "../../validators/add-product-validator";
 import {DomSanitizer} from "@angular/platform-browser";
 import {FileHandle} from "../../modeles/images/file-handle";
 import {Product} from "../../modeles/product/product";
-import {ProductService} from "../../services/product.service";
+import {ProductService} from "../../services/product/product.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ProductCategory} from "../../modeles/product/category/product-category";
 

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ShopFormService} from "../../services/shop-form.service";
+import {ShopFormService} from "../../services/shop/shop-form.service";
 import {Country} from "../../modeles/country/country";
 import {State} from "../../modeles/state/state";
 import {ShopFormValidators} from "../../validators/shop-form-validators";
-import {CartService} from "../../services/cart.service";
+import {CartService} from "../../services/cart/cart.service";
 import {CheckoutService} from "../../services/checkout/checkout.service";
 import {Router} from "@angular/router";
 import {Order} from "../../modeles/order/order";

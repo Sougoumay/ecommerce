@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CartItem} from "../modeles/cart/cart-item";
+import {CartItem} from "../../modeles/cart/cart-item";
 import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
@@ -12,7 +12,20 @@ export class CartService {
   totalPrice : Subject<number> = new BehaviorSubject<number>(0);
   totalQuantity : Subject<number> = new BehaviorSubject<number>(0);
 
-  constructor() { }
+  storage : Storage = localStorage;
+
+  constructor() {
+
+    const storageCartItems = this.storage.getItem("cartItems");
+    if (storageCartItems != null) {
+      // read data from storage
+      this.cartItems = JSON.parse(storageCartItems);
+
+      // compute totals based on the data that is read from storage
+      this.computeCartTotals();
+
+    }
+  }
 
   addToCart(theCartItem : CartItem) {
     // check if we already have the item in our cart
@@ -50,6 +63,9 @@ export class CartService {
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
 
+    // persist cart data
+    this.persistCartItems();
+
   }
   decrementQuantity(theCartItem: CartItem) {
     theCartItem.quantity--;
@@ -70,5 +86,9 @@ export class CartService {
 
       this.computeCartTotals();
     }
+  }
+
+  persistCartItems() {
+    this.storage.setItem("cartItems", JSON.stringify(this.cartItems));
   }
 }
