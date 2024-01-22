@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public void addNewUser(User newUser) {
+        userRepository.save(newUser);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String userName) {
         User user = userRepository.findUserByUserName(userName);
         if (user == null) {

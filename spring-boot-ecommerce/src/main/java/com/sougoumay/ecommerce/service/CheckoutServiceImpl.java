@@ -1,6 +1,7 @@
 package com.sougoumay.ecommerce.service;
 
 import com.sougoumay.ecommerce.dao.CustomerRepository;
+import com.sougoumay.ecommerce.dao.UserRepository;
 import com.sougoumay.ecommerce.dto.Purchase;
 import com.sougoumay.ecommerce.dto.PurchaseResponse;
 import com.sougoumay.ecommerce.entity.Customer;
@@ -43,6 +44,18 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         // populate customer with order
         Customer customer = purchase.getCustomer();
+
+//        // check if this is an existing customer
+//        String email = customer.getEmail();
+//
+//        Customer customerFromDB = customerRepository.findCustomerByEmail(email);
+//
+//        if (customerFromDB != null) {
+//            customer = customerFromDB;
+//        } else {
+//
+//        }
+
         customer.add(order);
 
         // save to the database

@@ -20,15 +20,16 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
 import {AuthenticationService} from "./services/guards/authentication.service";
+import { RegisterComponent } from './components/register/register.component';
 
 const routes : Routes = [
   {path: 'login', component : LoginComponent},
-  {path: 'product/:id', component : ProductDetailsComponent, canActivate : [AuthenticationService]},
-  {path: 'search/:keyword', component : ProductListComponent, canActivate : [AuthenticationService]},
-  {path: 'category/:id', component : ProductListComponent, canActivate : [AuthenticationService]},
-  {path: 'category', component : ProductListComponent, canActivate : [AuthenticationService]},
-  {path: 'products', component : ProductListComponent, canActivate : [AuthenticationService]},
-  {path: 'cart-details', component : CartDetailsComponent, canActivate : [AuthenticationService]},
+  {path: 'product/:id', component : ProductDetailsComponent},
+  {path: 'search/:keyword', component : ProductListComponent},
+  {path: 'category/:id', component : ProductListComponent},
+  {path: 'category', component : ProductListComponent},
+  {path: 'products', component : ProductListComponent},
+  {path: 'cart-details', component : CartDetailsComponent},
   {path: 'checkout', component : CheckoutComponent, canActivate : [AuthenticationService]},
   {path : 'addProduct', component : AddProductComponent, canActivate : [AuthenticationService]},
   {path: '', redirectTo : '/login', pathMatch : 'full'},
@@ -49,6 +50,7 @@ const routes : Routes = [
     AddProductComponent,
     LoginComponent,
     DashboardComponent,
+    RegisterComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -58,11 +60,7 @@ const routes : Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ProductService, {
-    provide : HTTP_INTERCEPTORS,
-    useClass : AppHttpInterceptor,
-    multi : true
-  }],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

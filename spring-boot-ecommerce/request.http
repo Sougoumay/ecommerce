@@ -1,6 +1,6 @@
 GET http://127.0.0.1:8080/api/products
-Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXNhbiIsImV4cCI6MTcwNTcwMDU2NSwiaWF0IjoxNzA1Njk5OTY1LCJzY29wZSI6IlJPTEVfQURNSU4gUk9MRV9FTVBMT1lFRSBST0xFX01BTkFHRVIifQ.LO48AsTztmEERROrG40QY7w-HiaMDUmJOLYcAK7qW7TTiSvCLwdOBZbVzdfrM_6hj4AfQy0i5j9i4_OB_nLyMQ
+#Accept: application/json
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXNhbiIsImV4cCI6MTcwNTcwMDU2NSwiaWF0IjoxNzA1Njk5OTY1LCJzY29wZSI6IlJPTEVfQURNSU4gUk9MRV9FTVBMT1lFRSBST0xFX01BTkFHRVIifQ.LO48AsTztmEERROrG40QY7w-HiaMDUmJOLYcAK7qW7TTiSvCLwdOBZbVzdfrM_6hj4AfQy0i5j9i4_OB_nLyMQ
 
 ###
 GET http://127.0.0.1:8080/api/auth/profile
@@ -12,4 +12,4 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXNhbiIsImV4cCI6MTcwNTcwM
 POST http://localhost:8080/api/auth/login
 Content-Type: application/x-www-form-urlencoded
 
-username=susan&password=password
+username=hamid&password=password
