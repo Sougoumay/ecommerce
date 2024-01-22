@@ -1,4 +1,3 @@
-import {FileHandle} from "../images/file-handle";
 import {Image} from "../images/image";
 
 export class Product {
@@ -14,7 +13,6 @@ export class Product {
     public dateCreated : Date | null,
     public dateUpdated : Date | null,
     public image : Image
-    // public fileHandle : FileHandle
   ) {
   }
 }

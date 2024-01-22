@@ -19,4 +19,8 @@ export class AppComponent {
     return (this.storage.getItem("isAuthenticated") != null && this.router.url !== '/login' && this.router.url !== "");
   }
 
+  logout() {
+    this.storage.clear();
+    this.router.navigateByUrl("/login")
+  }
 }

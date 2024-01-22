@@ -4,6 +4,7 @@ import {Product} from "../../modeles/product/product";
 import {ActivatedRoute} from "@angular/router";
 import {CartService} from "../../services/cart/cart.service";
 import {CartItem} from "../../modeles/cart/cart-item";
+import {Image} from "../../modeles/images/image";
 
 @Component({
   selector: 'app-product-list',
@@ -98,5 +99,10 @@ export class ProductListComponent implements OnInit{
   addToCart(product: Product) {
     const theCartItem: CartItem = new CartItem(product);
     this.cartService.addToCart(theCartItem);
+  }
+
+  loadImage(image : Image) {
+    console.log('data:image/jpeg;base64,' + image.picByte)
+    return 'data:image/jpeg;base64,' + image.picByte;
   }
 }

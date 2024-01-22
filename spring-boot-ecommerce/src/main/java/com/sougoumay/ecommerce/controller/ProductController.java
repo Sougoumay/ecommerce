@@ -24,17 +24,11 @@ public class ProductController {
 
     @PostMapping( value = {"/api/products/add"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public Product addNewProduct(@RequestPart("product") Product product, @RequestPart("imageFile")MultipartFile file){
-        System.out.println("Received product data in controller: " + product);
-        System.out.println("Param file " + file);
         try {
             ImageModel imageModel = new ImageModel(file.getOriginalFilename(),file.getContentType(),file.getBytes());;
             product.setImage(imageModel);
-            System.out.println("product " + product);
-            System.out.println("Image model " + imageModel);
-            System.out.println("Param file " + file);
             return productService.addProduct(product);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
             return null ;
         }
     }

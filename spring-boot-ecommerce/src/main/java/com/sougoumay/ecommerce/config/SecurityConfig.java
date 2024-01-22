@@ -53,6 +53,10 @@ public class SecurityConfig {
                         req
                                 .requestMatchers("/api/auth/login/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN","SCOPE_ROLE_EMPLOYEE","SCOPE_ROLE_MANAGER")
+                                .requestMatchers(HttpMethod.POST, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN","SCOPE_ROLE_MANAGER")
+                                .requestMatchers(HttpMethod.PATCH, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN","SCOPE_ROLE_MANAGER")
+                                .requestMatchers(HttpMethod.PUT, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN","SCOPE_ROLE_MANAGER")
+                                .requestMatchers(HttpMethod.DELETE, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN")
                 )
                 .authorizeHttpRequests( req -> req.anyRequest().authenticated())
 //                .httpBasic(Customizer.withDefaults())

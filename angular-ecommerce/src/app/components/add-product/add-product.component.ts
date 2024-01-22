@@ -8,6 +8,7 @@ import {Product} from "../../modeles/product/product";
 import {ProductService} from "../../services/product/product.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ProductCategory} from "../../modeles/product/category/product-category";
+import {ProductDto} from "../../interfaces/product-dto";
 
 @Component({
   selector: 'app-add-product',
@@ -75,7 +76,7 @@ export class AddProductComponent implements OnInit{
     console.log(`file ${file}`)
     console.log(`file ${JSON.stringify(category)}`)
 
-    const product : any = {
+    const product : ProductDto = {
       name : name,
       description : description,
       unitPrice : unitPrice,
@@ -83,12 +84,8 @@ export class AddProductComponent implements OnInit{
       category : {
         id : category.id,
         categoryName : category.categoryName
-      }
-      // active : true,
-      // dateCreated : null,
-      // dateUpdated :  null,
-      // imageUrl : null,
-      // id : null
+      },
+      active : true
     };
 
     console.log(JSON.stringify(product));
@@ -96,7 +93,7 @@ export class AddProductComponent implements OnInit{
     this.addProduct(productFormData);
   }
 
-  prepareFormData(product : Product) {
+  prepareFormData(product : ProductDto) {
     const formData : FormData = new FormData();
     formData.append('product', new Blob([JSON.stringify(product)],{type:'application/json'}));
     formData.append('imageFile',this.image.file,this.image.file.name);
