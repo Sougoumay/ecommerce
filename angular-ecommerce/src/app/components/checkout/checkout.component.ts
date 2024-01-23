@@ -25,6 +25,12 @@ export class CheckoutComponent implements OnInit{
   totalPrice : number = 0.00;
   totalQuantity : number = 0;
 
+  // customer identity
+  customerFirstName !: string;
+  customerLastName !: string;
+  customerEmail !: string;
+  customer !: Customer;
+
   // address
   countries : Country[] = [];
   shippingAddressStates : State[] = [];
@@ -45,14 +51,15 @@ export class CheckoutComponent implements OnInit{
 
   ngOnInit(): void {
 
+    this.loadCustomerIdentityData();
     this.reviewCartDetails();
 
     this.checkOutFormGroup = this.formBuilder.group({
-      customer : this.formBuilder.group({
-        firstName : new FormControl('',[Validators.required, Validators.minLength(2),  ShopFormValidators.notOnlyWhiteSpace]),
-        lastName : new FormControl('',[Validators.required, Validators.minLength(2), ShopFormValidators.notOnlyWhiteSpace]),
-        email : new FormControl('', [Validators.required,Validators.pattern('^[a-z0-9-A-Z0-9._\\-+]+@[a-z0-9.-]+\\.[a-z]{2,4}$'), ShopFormValidators.notOnlyWhiteSpace])
-      }),
+      // customer : this.formBuilder.group({
+      //   firstName : new FormControl("",[Validators.required, Validators.minLength(2),  ShopFormValidators.notOnlyWhiteSpace]),
+      //   lastName : new FormControl("",[Validators.required, Validators.minLength(2), ShopFormValidators.notOnlyWhiteSpace]),
+      //   email : new FormControl("", [Validators.required,Validators.pattern('^[a-z0-9-A-Z0-9._\\-+]+@[a-z0-9.-]+\\.[a-z]{2,4}$'), ShopFormValidators.notOnlyWhiteSpace])
+      // }),
       shippingAddress : this.formBuilder.group({
         street : new FormControl('',[Validators.required, ShopFormValidators.notOnlyWhiteSpace]),
         state : new FormControl('',[Validators.required]),
@@ -169,6 +176,28 @@ export class CheckoutComponent implements OnInit{
     return this.checkOutFormGroup.get("creditCard.securityCode");
   }
 
+  loadCustomerIdentityData() {
+    this.checkoutService.getCustomerIdentityData().subscribe({
+      next : data => {
+        console.log(data)
+        this.customerFirstName = data.firstName;
+        this.customerLastName = data.lastName;
+        this.customerEmail = data.email;
+        console.log("*****************")
+        console.log(this.customerFirstName)
+        console.log("*****************")
+        console.log(this.customerLastName)
+        console.log("*****************")
+        console.log(this.customerEmail)
+        this.customer = data;
+
+      },
+      error : err => {
+        console.log(err)
+    }
+    })
+  }
+
   onSubmit() {
 
     if (this.checkOutFormGroup.invalid) {
@@ -189,11 +218,11 @@ export class CheckoutComponent implements OnInit{
     let orderItems : OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
 
     // get customer to populate purchase
-    const customerFormGroup = this.checkOutFormGroup.get('customer');
-    const firstName = customerFormGroup?.value.firstName;
-    const lastName = customerFormGroup?.value.lastName;
-    const email = customerFormGroup?.value.email;
-    const customer : Customer = new Customer(firstName,lastName,email,"password");
+    // const customerFormGroup = this.checkOutFormGroup.get('customer');
+    // const firstName = customerFormGroup?.value.firstName;
+    // const lastName = customerFormGroup?.value.lastName;
+    // const email = customerFormGroup?.value.email;
+    // const customer : Customer = new Customer(firstName,lastName,email,"password");
 
     // get shipping address to populate purchase
     const shippingAddressStreet = this.checkOutFormGroup.get('shippingAddress')?.value.street;
@@ -220,7 +249,7 @@ export class CheckoutComponent implements OnInit{
     const expirationYear = this.checkOutFormGroup.get('creditCard')?.value.expirationYear;
 
     // set up purchase
-    let purchase : Purchase = new Purchase(customer,shippingAddress,billingAddress,order,orderItems);
+    let purchase : Purchase = new Purchase(this.customer,shippingAddress,billingAddress,order,orderItems);
 
     // call REST API via CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({

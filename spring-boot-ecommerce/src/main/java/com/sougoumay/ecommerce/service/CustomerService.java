@@ -4,4 +4,6 @@ import com.sougoumay.ecommerce.entity.Customer;
 
 public interface CustomerService {
     Customer addNewCustomer(Customer customer);
+
+    Customer findByEmail(String email);
 }

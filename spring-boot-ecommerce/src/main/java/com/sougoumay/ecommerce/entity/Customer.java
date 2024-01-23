@@ -40,4 +40,15 @@ public class Customer {
             order.setCustomer(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", orders=" + orders +
+                '}';
+    }
 }
