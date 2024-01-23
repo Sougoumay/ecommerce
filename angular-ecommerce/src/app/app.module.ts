@@ -20,10 +20,15 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
 import {AuthenticationService} from "./services/guards/authentication.service";
-import { RegisterComponent } from './components/register/register.component';
+import { AuthComponent } from './components/auth/auth/auth.component';
+import { AddCustomerComponent } from './components/add-customer/add-customer.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import {AuthorizationService} from "./services/guards/authorization.service";
 
 const routes : Routes = [
   {path: 'login', component : LoginComponent},
+  {path: 'forbidden', component : ForbiddenComponent},
+  {path: 'register', component : AddCustomerComponent},
   {path: 'product/:id', component : ProductDetailsComponent},
   {path: 'search/:keyword', component : ProductListComponent},
   {path: 'category/:id', component : ProductListComponent},
@@ -31,8 +36,8 @@ const routes : Routes = [
   {path: 'products', component : ProductListComponent},
   {path: 'cart-details', component : CartDetailsComponent},
   {path: 'checkout', component : CheckoutComponent, canActivate : [AuthenticationService]},
-  {path : 'addProduct', component : AddProductComponent, canActivate : [AuthenticationService]},
-  {path: '', redirectTo : '/login', pathMatch : 'full'},
+  {path : 'addProduct', component : AddProductComponent, canActivate : [AuthenticationService, AuthorizationService]},
+  {path: '', redirectTo : '/products', pathMatch : 'full'},
   {path: '**', redirectTo : '/products', pathMatch : 'full'},
 
 ]
@@ -50,7 +55,9 @@ const routes : Routes = [
     AddProductComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent,
+    AuthComponent,
+    AddCustomerComponent,
+    ForbiddenComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -60,7 +67,12 @@ const routes : Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,
+    {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AppHttpInterceptor,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

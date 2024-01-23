@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit{
 
   formLogin !: FormGroup;
-
+  storage : Storage = sessionStorage;
 
   constructor(private formBuilder : FormBuilder,
               private authService : AuthService,
@@ -32,11 +32,30 @@ export class LoginComponent implements OnInit{
       next : data => {
         console.log(data)
         this.authService.loadProfile(data);
-        this.router.navigateByUrl("/products")
+        this.loadAuthenticateUserRole();
+        this.router.navigateByUrl("/products");
       },
       error : err => {
         console.log(err)
     }
     });
+  }
+
+  loadAuthenticateUserRole() {
+    const username : string | null = sessionStorage.getItem("username");
+    console.log("************************************")
+    console.log("username " + username)
+    if (username) {
+      this.authService.authenticatedUser(username).subscribe({
+        next : data => {
+          console.log("**********************************")
+          console.log(data);
+          this.authService.loadRole(data);
+        },
+        error : err => {
+          console.log(err.message)
+        }
+      })
+    }
   }
 }

@@ -1,0 +1,4 @@
+<div class="form-header">
+  <button class="au-btn-submit mx-5 py-2" *ngIf="isAuthenticated()" (click)="logout()">Logout</button>
+  <button class="au-btn-submit mx-5 py-2" *ngIf="!isAuthenticated()" routerLink="/login">Login</button>
+</div>

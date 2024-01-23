@@ -16,11 +16,15 @@ export class AppComponent {
   isMenuVisible(): boolean {
     // Vérifier si la route actuelle est différente de la page de login
 
-    return (this.storage.getItem("isAuthenticated") != null && this.router.url !== '/login' && this.router.url !== "");
+    return this.router.url !== '/login';
   }
 
-  logout() {
-    this.storage.clear();
-    this.router.navigateByUrl("/login")
+  isAdmin() {
+    const roles = this.storage.getItem("roles");
+    if (roles != null && roles.includes("ADMIN")) {
+      return true;
+    }
+
+    return false;
   }
 }

@@ -1,7 +1,7 @@
 <div class="page-wrapper">
 
   <!-- MENU SIDEBAR-->
-  <aside class="menu-sidebar d-none d-lg-block">
+  <aside class="menu-sidebar d-none d-lg-block" *ngIf="isMenuVisible()">
     <div class="logo">
       <a routerLink="/products">
         <img src="assets/images/logo-1.png" alt="hamid" class="img-responsive">
@@ -11,7 +11,7 @@
       <nav class="navbar-sidebar">
         <ul class="list-unstyled navbar-list">
           <app-product-category-menu></app-product-category-menu>
-          <li><a routerLink="/addProduct" routerLinkActive="active-link">Add Product</a></li>
+          <li *ngIf="isAdmin()"><a routerLink="/addProduct" routerLinkActive="active-link">Add Product</a></li>
         </ul>
       </nav>
     </div>
@@ -21,14 +21,12 @@
 
   <div class="page-container">
     <!-- HEADER DESKTOP-->
-    <header class="header-desktop">
+    <header class="header-desktop" *ngIf="isMenuVisible()">
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
             <app-search-product></app-search-product>
-            <div class="form-header">
-              <button class="au-btn-submit" (click)="logout()">Logout</button>
-            </div>
+            <app-auth></app-auth>
             <app-cart-status></app-cart-status>
           </div>
           <div class="account-wrap"></div>

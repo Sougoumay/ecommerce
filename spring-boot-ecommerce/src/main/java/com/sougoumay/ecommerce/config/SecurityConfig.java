@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req
                                 .requestMatchers("/api/auth/login/**").permitAll()
-                                .requestMatchers("/api/register").permitAll()
+                                .requestMatchers("/api/customer/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/product-category/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/*").hasAnyAuthority("SCOPE_ROLE_ADMIN","SCOPE_ROLE_MANAGER")

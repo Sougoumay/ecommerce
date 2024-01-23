@@ -5,11 +5,15 @@ GET http://127.0.0.1:8080/api/products
 ###
 GET http://127.0.0.1:8080/api/auth/profile
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXNhbiIsImV4cCI6MTcwNTcwMDU2NSwiaWF0IjoxNzA1Njk5OTY1LCJzY29wZSI6IlJPTEVfQURNSU4gUk9MRV9FTVBMT1lFRSBST0xFX01BTkFHRVIifQ.LO48AsTztmEERROrG40QY7w-HiaMDUmJOLYcAK7qW7TTiSvCLwdOBZbVzdfrM_6hj4AfQy0i5j9i4_OB_nLyMQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXNhbkBuZXQuY29tIiwiZXhwIjoxNzA2MDQyMDcxLCJpYXQiOjE3MDYwNDE0NzEsInNjb3BlIjoiUk9MRV9BRE1JTiBST0xFX0VNUExPWUVFIFJPTEVfTUFOQUdFUiJ9.wSBojFoNUDt_OlaSeAXWJXDQoR1_-v7joVA2kEZ8QaLLBv-TJk8cLySIixVDLCOoixj3DGDUSQADon-84acJPg
 
 
 ###
 POST http://localhost:8080/api/auth/login
 Content-Type: application/x-www-form-urlencoded
 
-username=hamid&password=password
+username=susan@net.com&password=password
+
+### get current user roles
+GET http://localhost:8080/api/auth/current/jean@net.com/roles
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZWFuQG5ldC5jb20iLCJleHAiOjE3MDYwNDM1OTgsImlhdCI6MTcwNjA0Mjk5OCwic2NvcGUiOiJST0xFX0NVU1RPTUVSIn0.zrWQTyGf5rntpOKgH6TVu5PF6cGfqmZgXXiZAhx435pgAvzKd6ovyDWsj3wPNJjKfBrvLm84EgdzSNskKy_l7A

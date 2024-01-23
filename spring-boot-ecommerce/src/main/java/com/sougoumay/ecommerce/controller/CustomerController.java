@@ -3,6 +3,7 @@ package com.sougoumay.ecommerce.controller;
 import com.sougoumay.ecommerce.entity.Customer;
 import com.sougoumay.ecommerce.entity.Role;
 import com.sougoumay.ecommerce.entity.User;
+import com.sougoumay.ecommerce.request.CustomerRequest;
 import com.sougoumay.ecommerce.service.CustomerService;
 import com.sougoumay.ecommerce.service.RoleService;
 import com.sougoumay.ecommerce.service.SecurityService;
@@ -40,15 +41,22 @@ public class CustomerController {
 
     @Transactional
     @PostMapping("/register")
-    public Map<String, String> register(@RequestBody Customer customer) throws Exception {
-        String email = customer.getEmail();
+    public Map<String, String> register(@RequestBody CustomerRequest request) throws Exception {
+        String email = request.getEmail();
         User user = userService.findByUserName(email);
 
         if (user != null) {
             throw new Exception("Cet email est déjà utilisé");
         }
 
-        Customer addedCustomer = customerService.addNewCustomer(customer);
+        System.out.println(request);
+
+        Customer newCustomer = new Customer();
+        newCustomer.setEmail(request.getEmail());
+        newCustomer.setFirstName(request.getFirstName());
+        newCustomer.setLastName(request.getLastName());
+
+        newCustomer = customerService.addNewCustomer(newCustomer);
 
         Set<Role> roles = new HashSet<>();
         Role role = roleService.findRoleById(4);
@@ -57,13 +65,13 @@ public class CustomerController {
         User newUser = new User();
 //        newUser.setFirstName(addedCustomer.getFirstName());
 //        newUser.setLastName(addedCustomer.getLastName());
-        newUser.setUserName(addedCustomer.getEmail());
-        newUser.setPassword(passwordEncoder.encode(addedCustomer.getPassword()));
+        newUser.setUserName(newCustomer.getEmail());
+        newUser.setPassword(passwordEncoder.encode(request.getPassword()));
         newUser.setActive(true);
         newUser.setRoles(roles);
         userService.addNewUser(newUser);
 
-        return securityService.login(addedCustomer.getEmail(), addedCustomer.getPassword());
+        return securityService.login(request.getEmail(), request.getPassword());
 
     }
 

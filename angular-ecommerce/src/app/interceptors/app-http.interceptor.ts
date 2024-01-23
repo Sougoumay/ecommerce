@@ -15,7 +15,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!request.url.includes("/auth/login")) {
+    if (request.url.includes("/current/user") || request.url.includes("/products/add") || request.url.includes("/checkout/purchase")) {
       let newRequest = request.clone({
         headers : request.headers.set("Authorization","Bearer " + this.storage.getItem("accessToken"))
       });

@@ -193,7 +193,7 @@ export class CheckoutComponent implements OnInit{
     const firstName = customerFormGroup?.value.firstName;
     const lastName = customerFormGroup?.value.lastName;
     const email = customerFormGroup?.value.email;
-    const customer : Customer = new Customer(firstName,lastName,email);
+    const customer : Customer = new Customer(firstName,lastName,email,"password");
 
     // get shipping address to populate purchase
     const shippingAddressStreet = this.checkOutFormGroup.get('shippingAddress')?.value.street;
@@ -225,7 +225,7 @@ export class CheckoutComponent implements OnInit{
     // call REST API via CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({
       next : response => {
-        alert(`Your order has benn received.\nOrder tracking number : ${response.orderTrackingNumber}`);
+        alert(`Your order has been received.\nOrder tracking number : ${response.orderTrackingNumber}`);
 
         // reset cart
         this.resetCart();
