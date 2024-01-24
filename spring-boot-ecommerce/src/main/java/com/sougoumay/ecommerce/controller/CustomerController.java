@@ -1,5 +1,6 @@
 package com.sougoumay.ecommerce.controller;
 
+import com.sougoumay.ecommerce.dto.CustomerDto;
 import com.sougoumay.ecommerce.entity.Customer;
 import com.sougoumay.ecommerce.entity.Role;
 import com.sougoumay.ecommerce.entity.User;
@@ -74,14 +75,21 @@ public class CustomerController {
     }
 
     @GetMapping("/current/{email}")
-    public Customer getCurrentCustomer(@PathVariable("email") String email) {
+    public CustomerDto getCurrentCustomer(@PathVariable("email") String email) {
         email = email.substring(1,email.length()-1);
         System.out.println("email = " + email);
         Customer customer = customerService.findByEmail(email);
-        System.out.println(customer.toString());
-        return customer;
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setId(customer.getId());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setFirstName(customer.getFirstName());
+        customerDto.setLastName(customer.getLastName());
 
-        // TODO : il faut résoudre liée à la sérialisation lorsque le client a déjà fait des commandes precedemment
+        System.out.println(customer.toString());
+        System.out.println(customerDto.toString());
+        return customerDto;
+
+         résoudre liée à la sérialisation lorsque le client a déjà fait des commandes precedemment
     }
 
 }
