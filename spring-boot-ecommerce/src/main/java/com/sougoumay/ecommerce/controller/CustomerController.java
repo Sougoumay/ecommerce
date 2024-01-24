@@ -89,7 +89,6 @@ public class CustomerController {
         System.out.println(customerDto.toString());
         return customerDto;
 
-         résoudre liée à la sérialisation lorsque le client a déjà fait des commandes precedemment
     }
 
 }
