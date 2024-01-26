@@ -11,7 +11,7 @@ export class AuthenticationService {
   constructor(private router : Router) { }
 
   canActivate(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) : boolean {
-    const isAuthenticated = this.storage.getItem("isAuthenticated");
+    // const isAuthenticated = this.storage.getItem("isAuthenticated");
 
     if(this.storage.getItem("isAuthenticated") != null) {
 
@@ -25,7 +25,7 @@ export class AuthenticationService {
 
         return false;
       }
-      
+
       return true;
     }
 
