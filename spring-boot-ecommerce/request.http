@@ -17,3 +17,7 @@ username=susan@net.com&password=password
 ### get current user roles
 GET http://localhost:8080/api/auth/current/jean@net.com/roles
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZWFuQG5ldC5jb20iLCJleHAiOjE3MDYwNDM1OTgsImlhdCI6MTcwNjA0Mjk5OCwic2NvcGUiOiJST0xFX0NVU1RPTUVSIn0.zrWQTyGf5rntpOKgH6TVu5PF6cGfqmZgXXiZAhx435pgAvzKd6ovyDWsj3wPNJjKfBrvLm84EgdzSNskKy_l7A
+
+### get order history
+GET http://localhost:8080/api/orders/search/findOrderByCustomerEmailOrderByDateCreatedDesc?email=jean@net.com
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZWFuQG5ldC5jb20iLCJleHAiOjE3MDYyOTkxMjAsImlhdCI6MTcwNjI5ODUyMCwic2NvcGUiOiJST0xFX0NVU1RPTUVSIn0.fcefDfm85aSgjJDH288oqUkYh9XdCNsW6OU42x_Vvriz7y1ohiH96YCRBekzMtsdpvlSXv0xu8DqBDhyTIaSbg

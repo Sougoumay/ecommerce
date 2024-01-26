@@ -19,6 +19,10 @@ export class AppComponent {
     return this.router.url !== '/login';
   }
 
+  isAuthenticated() {
+    return sessionStorage.getItem("isAuthenticated") != null;
+  }
+
   isAdmin() {
     const roles = this.storage.getItem("roles");
     if (roles != null && roles.includes("ADMIN")) {

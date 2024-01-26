@@ -24,6 +24,7 @@ import { AuthComponent } from './components/auth/auth/auth.component';
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import {AuthorizationService} from "./services/guards/authorization.service";
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 const routes : Routes = [
   {path: 'login', component : LoginComponent},
@@ -34,6 +35,7 @@ const routes : Routes = [
   {path: 'category/:id', component : ProductListComponent},
   {path: 'category', component : ProductListComponent},
   {path: 'products', component : ProductListComponent},
+  {path: 'order-history', component : OrderHistoryComponent, canActivate : [AuthenticationService]},
   {path: 'cart-details', component : CartDetailsComponent},
   {path: 'checkout', component : CheckoutComponent, canActivate : [AuthenticationService]},
   {path : 'addProduct', component : AddProductComponent, canActivate : [AuthenticationService, AuthorizationService]},
@@ -58,6 +60,7 @@ const routes : Routes = [
     AuthComponent,
     AddCustomerComponent,
     ForbiddenComponent,
+    OrderHistoryComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

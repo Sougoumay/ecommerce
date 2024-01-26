@@ -12,6 +12,7 @@
         <ul class="list-unstyled navbar-list">
           <app-product-category-menu></app-product-category-menu>
           <li *ngIf="isAdmin()"><a routerLink="/addProduct" routerLinkActive="active-link">Add Product</a></li>
+          <li *ngIf="isAuthenticated()"><a routerLink="/order-history" routerLinkActive="active-link">Order History</a></li>
         </ul>
       </nav>
     </div>

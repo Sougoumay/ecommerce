@@ -40,9 +40,12 @@ export class AuthService {
     // this.username = decodedJwt.sub;
     this.storage.setItem("username", JSON.stringify(decodedJwt.sub));
     this.storage.setItem("decoder", JSON.stringify(decodedJwt));
+    this.storage.setItem("timeToExpired", JSON.stringify(decodedJwt.exp))
     console.log("********************")
     console.log(decodedJwt)
     // this.roles = decodedJwt.scope;
+
+    // calcul expiration time
   }
 
   authenticatedUser(username : string)  {

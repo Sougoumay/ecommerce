@@ -15,8 +15,12 @@ export class AppHttpInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (request.url.includes("/current/user") || request.url.includes("/products/add") || request.url.includes("/checkout/purchase")
-        || request.url.includes("/api/customer/current") || request.url.includes("/api/countries") || request.url.includes("/api/states")) {
+
+    const newRequestCase : boolean = request.url.includes("/current/user") || request.url.includes("/products/add") || request.url.includes("/checkout/purchase")
+      || request.url.includes("/api/customer/current") || request.url.includes("/api/countries") || request.url.includes("/api/states")
+      || request.url.includes("api/orders");
+
+    if (newRequestCase) {
       let newRequest = request.clone({
         headers : request.headers.set("Authorization","Bearer " + this.storage.getItem("accessToken"))
       });
